@@ -13,7 +13,4 @@ void push(int x)
 	newNode->n = x;
 	newNode->prev = NULL;
 	newNode->next = NULL;
-	
-
-
 }
