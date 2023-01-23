@@ -1,10 +1,20 @@
+#ifndef OP_FUNCS
+#define OP_FUNCS
+
 #include "monty.h"
+#include "monty_interpreter.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
 stack_t *top = NULL;
 stack_t *head = NULL;
+
+int getValue(int line_number)
+{
+	int value;
+	return (value);
+}
 
 /**
  * createNode - Funcition to Create  a New Node
@@ -30,8 +40,10 @@ void *createNode(int x)
 
 void push(stack_t **stack, unsigned int line_number)
 {
-	int value;
-	stack_t *newNode = createNode(value);
+	char *rcvd_value = strtok(NULL, " ");
+	printf("received value: [%s]\n", rcvd_value);
+	int converted_value = strtol(rcvd_value, NULL, 10);
+	stack_t *newNode = createNode(converted_value);
 	if (head == NULL)
 		head = top = newNode;
 	else
@@ -50,27 +62,21 @@ void push(stack_t **stack, unsigned int line_number)
 */
 void pop(stack_t **stack, unsigned int line_number)
 {
-	int x;
-	int count = 0;
-	while (count < x)
+	/* Popping Function */
+	stack_t *temp;
+	if (head == NULL || top == NULL)
+		printf("Empty Stack\n");
+	else
 	{
-		/* Popping Function */
-		stack_t *temp;
-		if (head == NULL || top == NULL)
-			printf("Empty Stack\n");
-		else
-		{
-			/**
-			 *  The goal here it to break the link from temp
-			*/
-			temp = top;
-			top->prev->next = NULL;
-			printf("\nPopping value (%d)---- \n", (*temp).n);
-			top = temp->prev;
-		}
-		free(temp);
-		count++;
+		/**
+		 *  The goal here it to break the link from temp
+		*/
+		temp = top;
+		top->prev->next = NULL;
+		printf("\nPopping value (%d)---- \n", (*temp).n);
+		top = temp->prev;
 	}
+	free(temp);
 }
 
 /**
@@ -93,23 +99,4 @@ void pall(stack_t **stack, unsigned int line_number)
 	free (temp);
 }
 
-void assignToFunction(char *opcode, int value)
-{
-
-	stack_t **stack;
-	/* Create an Array list of instructions */
-	instruction_t instructions[] = {
-		{"push", &push},
-		{"pop", &pop},
-		{"pall", &pall},
-		{NULL, NULL}
-	};
-
-	/* Call the functions based on the op code*/
-	for (int i = 1; instructions[i].opcode; i++)
-	{
-		if (strcmp(instructions[i].opcode, opcode) == 0)
-			instructions[i].f(stack, value);
-			return;
-	}
-}
+#endif /* OP_FUNCS */
