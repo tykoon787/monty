@@ -2,7 +2,11 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-/* SYS CALL*/
+/* User Files */
+#include "monty.h"
+#include "op_funcs.h"
+
+/* sys call*/
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
@@ -15,59 +19,57 @@ int main(int argc, char *argv[])
 	int fd, line_number = 1, line_buffer_index = 0;
 	ssize_t bytes_read;
 	char buffer[4096], line_buffer[1096];
-	if (argc < 2) 
-		printf("Usage Msg\n");
+	char *opcode;
+	if (argc < 2)
+		printf("usage msg\n");
 	else
 	{
-		/* Open file for reading */
-		printf("Opening file: [%s] \n", argv[1]);
+		/* open file for reading */
+		printf("opening file: [%s] \n", argv[1]);
 		fd = open(argv[1], O_RDONLY);
 
-		/* Check if file was opened successfully */
+		/* check if file was opened successfully */
 		if (fd == -1)
-			printf("Error opeining file");
+			printf("error opeining file");
 		else
 		{
-			while((bytes_read = read(fd, buffer, sizeof(buffer))) > 0)
+			while ((bytes_read = read(fd, buffer, sizeof(buffer))) > 0)
 			{
-				for (int i = 0; i < bytes_read; i++)	
+				for (int i = 0; i < bytes_read; i++)
 				{
 					if (buffer[i] == '\n')
 					{
 						line_buffer[line_buffer_index] = '\0';
-						printf("Line %d: %s\n", line_number, line_buffer);
-						
-						/* Tokenize Buffer to check for push */
-						/* This check is used to determine if the strin "push" is present at the beginning of the 
-						buffer. 
-						
-						This is done by Compare the return value of strstr() to the original buffer */
-						char *p = strstr(line_buffer, "push");
-						if ((p))
+						printf("line %d: %s\n", line_number, line_buffer);
+						/* Check for push*/
+						char *opcode = strtok(line_buffer, " ");
+						if (strcmp(opcode, "push") == 0)
 						{
-							/*move pointer to the location of the value in the buffer*/
-							p = p + strlen("push"); // p += strlen("push")
+							/* Get the value to push*/
+							char *value = strtok(NULL, " ");
 
-							/*convert the value in the buffer to an interger using strtol()*/
-							int value = strtol(p, NULL, 10);
+							/* convert the value to an int*/
+							int converted_value = strtol(value, NULL, 10);
+							printf("Opcode Received: [%s]\n", opcode);
+							printf("Value: [%d]\n", converted_value);
 
-							/* Push Value to the stack )*/
-							printf("Function to push with value %d \n", value);
+							/* Call to push*/
+							printf("Call to push with value: [%d]\n", converted_value);
 						}
 
-						/* Tokenize Buffer to check for pop */
-						else if (strstr(line_buffer, "pop") == line_buffer)
+						/* tokenize buffer to check for pop */
+						else if (strcmp(opcode, "pop") == 0)
 						{
-							printf("Function Pop Called \n");
+							printf("function pop called \n");
 						}
 
-						/* Tokenize Buffer to check for pall */
-						else if (strstr(line_buffer, "pall") == line_buffer)
+						/* tokenize buffer to check for pall */
+						else if (strcmp(opcode, "pall"))
 						{
-							printf("Function Pall Called \n");
+							printf("function pall called \n");
 						}
-						// Insert Error Checking Code 
-						/* 
+						// insert error checking code
+						/*
 						{
 							error check
 						}
@@ -77,12 +79,12 @@ int main(int argc, char *argv[])
 					}
 					else
 					{
-					line_buffer[line_buffer_index++] = buffer[i];
+						line_buffer[line_buffer_index++] = buffer[i];
 					}
 				}
 			}
 		}
 	}
-	close (fd);
+	close(fd);
 	return 0;
 }
