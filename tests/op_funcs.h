@@ -10,12 +10,6 @@
 stack_t *top = NULL;
 stack_t *head = NULL;
 
-int getValue(int line_number)
-{
-	int value;
-	return (value);
-}
-
 /**
  * createNode - Funcition to Create  a New Node
  * @x: Value to be inserted in New Node
