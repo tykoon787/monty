@@ -1,13 +1,14 @@
-#ifndef  MONTY_INTERPRETER_H 
-#define  MONTY_INTERPRETER_H
+#ifndef monty_interpreter_h
+#define monty_interpreter_h
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
 
-/* User Files */
+/* user files */
 #include "monty.h"
 #include "op_funcs.h"
+#include "callFuncs.h"
 
 /* sys call*/
 #include <sys/types.h>
@@ -17,78 +18,51 @@
 /* strstr */
 #include <string.h>
 
+/**
+ * interpreter - Monty File Interpreter
+ * @filename: File containing instructions
+ * Return: Nothing
+*/
 void interpreter(char *filename)
 {
-	int fd, line_number = 1, line_buffer_index = 0;
+	FILE *fp;
+	int line_number = 1;
 	ssize_t bytes_read;
-	char buffer[4096], line_buffer[1096]; 
+	char *line_buffer = (char *)malloc(sizeof(char) * 1096);
+	size_t len = sizeof(line_buffer);
 	char *opcode;
-	stack_t **stack;
-
-	instruction_t instructions[] = 
-	{
-		{"push", &push},
-		{"pop", &pop},
-		{"pall", &pall},
-		{NULL, NULL}
-	};
 
 	/* open file for reading */
 	printf("opening file: [%s] \n", filename);
-	fd = open(filename, O_RDONLY);
+	fp = fopen(filename, "r");
 
 	/* check if file was opened successfully */
-	if (fd == -1)
+	if (fp == NULL)
 		printf("error opeining file");
 	else
 	{
-		while ((bytes_read = read(fd, buffer, sizeof(buffer))) > 0)
+		while ((bytes_read = getline(&line_buffer, &len, fp)) > 0)
 		{
 			for (int i = 0; i < bytes_read; i++)
 			{
-				if (buffer[i] == '\n')
+				if (line_buffer[i] == '\n')
 				{
-					line_buffer[line_buffer_index] = '\0';
+					line_buffer[i] = '\0';
 					printf("line %d: %s\n", line_number, line_buffer);
-					/* Check for push, pop and pall*/
-					char *opcode = strtok(line_buffer, " ");
-					printf("Received opcode: [%s]\n", opcode);
+					opcode = strtok(line_buffer, " ");
+					printf("received opcode: [%s]\n", opcode);
 					if (strcmp(opcode, "push") == 0)
-					{
-						printf("opcode received: [%s]\n", opcode);
-						/* call to push*/
-						instructions[0].f(stack, line_number);
-					}
-
-					/* tokenize buffer to check for pop */
+						pushCall(line_number);
 					else if (strcmp(opcode, "pop") == 0)
-					{
-						printf("function pop called \n");
-						instructions[1].f(stack, line_number);
-					}
-
-					/* tokenize buffer to check for pall */
+						popCall(line_number);
 					else if (strcmp(opcode, "pall") == 0)
-					{
-						printf("function pall called \n");
-						instructions[2].f(stack, line_number);
-					}
-					// insert error checking code
-					/*
-					{
-						error check
-					}
-					*/
+						pallCall(line_number);
+					errorCheck(line_number, opcode);
 					line_number++;
-					line_buffer_index = 0;
-				}
-				else
-				{
-					line_buffer[line_buffer_index++] = buffer[i];
 				}
 			}
 		}
 	}
-	close(fd);
+	fclose(fp);
 }
-#endif /* MONTY_INTERPRETER */
+#endif /* monty_interpreter */
