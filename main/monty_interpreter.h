@@ -48,9 +48,7 @@ void interpreter(char *filename)
 				if (line_buffer[i] == '\n')
 				{
 					line_buffer[i] = '\0';
-					printf("line %d: %s\n", line_number, line_buffer);
 					opcode = strtok(line_buffer, " ");
-					printf("received opcode: [%s]\n", opcode);
 					if (strcmp(opcode, "push") == 0)
 						pushCall(line_number);
 					else if (strcmp(opcode, "pop") == 0)
