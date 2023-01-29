@@ -22,7 +22,6 @@ extern stack_t **stack;
 */
 void pushCall(int line_number)
 {
-	printf("Funtion Push Called\n");
 	instructions[0].f(stack, line_number);
 }
 
@@ -33,7 +32,6 @@ void pushCall(int line_number)
 */
 void popCall(int line_number)
 {
-	printf("function pop called \n");
 	instructions[1].f(stack, line_number);
 }
 
@@ -44,7 +42,6 @@ void popCall(int line_number)
 */
 void pallCall(int line_number)
 {
-	printf("function pall called \n");
 	instructions[2].f(stack, line_number);
 }
 
