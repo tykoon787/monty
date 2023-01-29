@@ -22,7 +22,6 @@ void *createNode(int x)
 	stack_t *newNode;
 
 	newNode = (stack_t *)malloc(sizeof(stack_t));
-	printf("Creating a Node with value [%d]\n", x);
 	if (newNode == NULL)
 	{
 		printf("Error: malloc failed\n");
@@ -47,7 +46,6 @@ void push(stack_t **stack, unsigned int line_number)
 	int converted_value = strtol(rcvd_value, NULL, 10);
 	stack_t *newNode = (stack_t *)createNode(converted_value);
 
-	printf("received value: [%s]\n", rcvd_value);
 	if (head == NULL)
 		head = top = newNode;
 	else
@@ -78,7 +76,6 @@ void pop(stack_t **stack, unsigned int line_number)
 		*/
 		temp = top;
 		top->prev->next = NULL;
-		printf("\nPopping value (%d)---- \n", (*temp).n);
 		top = temp->prev;
 	}
 	free(temp);
@@ -91,7 +88,6 @@ void pop(stack_t **stack, unsigned int line_number)
 */
 void pall(stack_t **stack, unsigned int line_number)
 {
-	printf("\nDisplaying ===== \n");
 	stack_t *temp, *head = NULL, *top = NULL;
 
 	temp = head;
