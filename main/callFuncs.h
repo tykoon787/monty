@@ -13,13 +13,12 @@ instruction_t instructions[] = {
 	{NULL, NULL}
 };
 
-
 /**
  * pushCall - Function that calls the push Function
  * @line_number: Line Number
  * Return: Nothing
 */
-void pushCall(int line_number)
+void pushCall(stack_t **stack, int line_number)
 {
 	instructions[0].f(stack, line_number);
 }
@@ -29,7 +28,7 @@ void pushCall(int line_number)
  * @line_number: Line Number
  * Return: Nothing
 */
-void popCall(int line_number)
+void popCall(stack_t **stack, int line_number)
 {
 	instructions[1].f(stack, line_number);
 }
@@ -39,7 +38,7 @@ void popCall(int line_number)
  * @line_number: Line Number
  * Return: Nothing
 */
-void pallCall(int line_number)
+void pallCall(stack_t **stack, int line_number)
 {
 	instructions[2].f(stack, line_number);
 }
