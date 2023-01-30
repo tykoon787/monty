@@ -38,13 +38,14 @@ extern stack_t **stack, *head, *top;
 
 /* ==== FUNCTIONS =====*/
 
+void interpreter(stack **stack, char *filename);
 void *createNode(int x);
 void push(stack_t **stack, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number);
 void pop(stack_t **stack, unsigned int line_number);
 void errorCheck(int line_number, char *instruction);
-void pushCall(int line_number);
-void popCall(int line_number);
-void pallCall(int line_number);
+void pushCall(stack_t **stack, int line_number);
+void popCall(stack_t **stack_t, int line_number);
+void pallCall(stack_t **stack, int line_number);
 
 #endif /* MONTY_H */
