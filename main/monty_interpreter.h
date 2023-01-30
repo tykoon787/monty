@@ -23,7 +23,7 @@
  * @filename: File containing instructions
  * Return: Nothing
 */
-void interpreter(char *filename)
+void interpreter(stack_t *stack, char *filename)
 {
 	FILE *fp;
 	int i, line_number = 1;
@@ -32,11 +32,8 @@ void interpreter(char *filename)
 	size_t len = sizeof(line_buffer);
 	char *opcode;
 
-	/* open file for reading */
-	printf("opening file: [%s] \n", filename);
 	fp = fopen(filename, "r");
 
-	/* check if file was opened successfully */
 	if (fp == NULL)
 		printf("error opeining file");
 	else
