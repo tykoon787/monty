@@ -1,13 +1,19 @@
-pall
 push 10
-pall
 push 20
 pall
 push 30
-pop 
+push 40
 pall
-push 40 
+push 50
+push 60
+pop
+push 70
+push 80
+pop
+push 100
+push 120
+pall
 pop
 pop
-push 3
+pall
 pall
