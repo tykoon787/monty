@@ -11,6 +11,14 @@
 */
 int main(int argc, char *argv[])
 {
+	stacK_t *stack = NULL;
+	stack = (stack_t*)malloc(sizeof(stack_t));
+	if (!stack)
+	{
+		perror("Malloc Failed\n");
+		exit(EXIT_FAILURE);
+	}
+
 	if (argc < 2)
 		printf("Usage Msg\n");
 	else
