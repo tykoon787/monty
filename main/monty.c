@@ -11,8 +11,9 @@
 */
 int main(int argc, char *argv[])
 {
-	stack_t *stack = NULL;
-	stack = (stack_t*)malloc(sizeof(stack_t));
+	stack_t **stack;
+	*stack = NULL;
+	*stack = (stack_t*)malloc(sizeof(stack_t));
 	if (!stack)
 	{
 		perror("Malloc Failed\n");
