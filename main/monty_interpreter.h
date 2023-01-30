@@ -51,11 +51,11 @@ void interpreter(stack_t *stack, char *filename)
 					if (opcode == NULL)
 						opcode = " ";
 					if (strcmp(opcode, "push") == 0)
-						pushCall(line_number);
+						pushCall(stack, line_number);
 					else if (strcmp(opcode, "pop") == 0)
-						popCall(line_number);
+						popCall(stack, line_number);
 					else if (strcmp(opcode, "pall") == 0)
-						pallCall(line_number);
+						pallCall(stack, line_number);
 					errorCheck(line_number, opcode);
 					line_number++;
 				}
