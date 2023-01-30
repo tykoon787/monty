@@ -23,7 +23,7 @@
  * @filename: File containing instructions
  * Return: Nothing
 */
-void interpreter(stack_t *stack, char *filename)
+void interpreter(stack_t **stack, char *filename)
 {
 	FILE *fp;
 	int i, line_number = 1;
