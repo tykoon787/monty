@@ -37,17 +37,20 @@ void *createNode(int x)
 * @line_number: Line number
 */
 
-void push(stack_t **stack, unsigned int line_number)
+void push(stack_t **stack, unsigned int line_number __attribute__((unused)))
 {
-	stack_t *top = *stack;
+	stack_t *top, *newNode;
 	char *rcvd_value = strtok(NULL, " ");
 	int converted_value = strtol(rcvd_value, NULL, 10);
-	stack_t *newNode = (stack_t *)createNode(converted_value);
+	newNode = (stack_t *)createNode(converted_value);
 
 	if (*stack == NULL)
 		*stack = top = newNode;
 	else
 	{
+		top = *stack;
+		while (top && top->next)
+			top = top->next;
 		newNode->prev = top;
 		top->next = newNode;
 		top = newNode;
@@ -60,19 +63,19 @@ void push(stack_t **stack, unsigned int line_number)
  * @line_number: Line number
  * return: nothing
 */
-void pop(stack_t **stack, unsigned int line_number)
+void pop(stack_t **stack, unsigned int line_number __attribute__((unused)))
 {
 	/* Popping Function */
-	stack_t *temp, *top = *stack;
+	stack_t *temp, *top;
 
-	if (*stack == NULL || top == NULL)
+	if (*stack == NULL)
 		printf("Empty Stack\n");
 	else
 	{
-		/**
-		 *  The goal here it to break the link from temp
-		*/
-		temp = top;
+		top = *stack;
+		while (top && top->next)
+			top = top->next;
+	 	temp = top;
 		top->prev->next = NULL;
 		top = temp->prev;
 	}
@@ -84,13 +87,13 @@ void pop(stack_t **stack, unsigned int line_number)
  * @stack: A pointer to a Pointer of a stack
  * @line_number: Line number
 */
-void pall(stack_t **stack, unsigned int line_number)
+void pall(stack_t **stack, unsigned int line_number __attribute__((unused)))
 {
-	stack_t *temp, *top = *stack;
+	stack_t *temp = *stack;
 
-	temp = *stack;
 	if (*stack == NULL)
 		printf("Empty Stack. Nothing to display\n");
+	
 	while (temp != NULL)
 	{
 		printf("Value: %d \n", temp->n);
