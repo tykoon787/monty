@@ -42,7 +42,7 @@ void push(stack_t **stack, unsigned int line_number)
 	stack_t *top = *stack;
 	char *rcvd_value = strtok(NULL, " ");
 	int converted_value = strtol(rcvd_value, NULL, 10);
-	*stack = (stack_t *)createNode(converted_value);
+	stack_t *newNode = (stack_t *)createNode(converted_value);
 
 	if (*stack == NULL)
 		*stack = top = newNode;
