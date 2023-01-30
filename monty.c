@@ -12,6 +12,7 @@
 int main(int argc, char *argv[])
 {
 	stack_t **stack;
+
 	stack = (stack_t **)malloc(sizeof(stack_t));
 	if (!stack)
 	{
