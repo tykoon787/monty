@@ -11,7 +11,7 @@
 */
 int main(int argc, char *argv[])
 {
-	stacK_t *stack = NULL;
+	stack_t *stack = NULL;
 	stack = (stack_t*)malloc(sizeof(stack_t));
 	if (!stack)
 	{
@@ -22,8 +22,8 @@ int main(int argc, char *argv[])
 	if (argc < 2)
 		printf("Usage Msg\n");
 	else
-	/* To do: Pass stack as an argument to the interpreter*/
-		interpreter(argv[1]);
+	/* To do: Pass stack as an argument to the interpreter */
+		interpreter(stack, argv[1]);
 
 	return (0);
 }
