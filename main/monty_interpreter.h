@@ -20,6 +20,7 @@
 
 /**
  * interpreter - Monty File Interpreter
+ * @stack: The Stack that will be modified
  * @filename: File containing instructions
  * Return: Nothing
 */
