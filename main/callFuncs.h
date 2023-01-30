@@ -6,14 +6,13 @@
 #include "monty.h"
 #include <stdio.h>
 
-extern instruction_t instructions[] = {
+instruction_t instructions[] = {
 	{"push", &push},
 	{"pop", &pop},
 	{"pall", &pall},
 	{NULL, NULL}
 };
 
-extern stack_t **stack;
 
 /**
  * pushCall - Function that calls the push Function

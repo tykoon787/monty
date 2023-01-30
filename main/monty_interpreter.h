@@ -15,7 +15,7 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 
-/* strstr */
+/* strcmp */
 #include <string.h>
 
 /**
@@ -26,7 +26,7 @@
 void interpreter(char *filename)
 {
 	FILE *fp;
-	int line_number = 1;
+	int i, line_number = 1;
 	ssize_t bytes_read;
 	char *line_buffer = (char *)malloc(sizeof(char) * 1096);
 	size_t len = sizeof(line_buffer);
@@ -43,12 +43,16 @@ void interpreter(char *filename)
 	{
 		while ((bytes_read = getline(&line_buffer, &len, fp)) > 0)
 		{
-			for (int i = 0; i < bytes_read; i++)
+			if (bytes_read == -1)
+				exit(EXIT_FAILURE);
+			for (i = 0; i < bytes_read; i++)
 			{
 				if (line_buffer[i] == '\n')
 				{
 					line_buffer[i] = '\0';
 					opcode = strtok(line_buffer, " ");
+					if (opcode == NULL)
+						opcode = " ";
 					if (strcmp(opcode, "push") == 0)
 						pushCall(line_number);
 					else if (strcmp(opcode, "pop") == 0)
@@ -62,5 +66,6 @@ void interpreter(char *filename)
 		}
 	}
 	fclose(fp);
+	free(line_buffer);
 }
 #endif /* monty_interpreter */

@@ -8,9 +8,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-extern stack_t **stack;
-
 const char *VALID_INSTRUCTIONS[] = {"push", "pall", "pop"};
+stack_t **stack, *head = NULL, *top = NULL;
 
 /**
  * createNode - Funcition to Create  a New Node
@@ -41,7 +40,6 @@ void *createNode(int x)
 
 void push(stack_t **stack, unsigned int line_number)
 {
-	stack_t *head = NULL, *top = NULL;
 	char *rcvd_value = strtok(NULL, " ");
 	int converted_value = strtol(rcvd_value, NULL, 10);
 	stack_t *newNode = (stack_t *)createNode(converted_value);
@@ -65,7 +63,7 @@ void push(stack_t **stack, unsigned int line_number)
 void pop(stack_t **stack, unsigned int line_number)
 {
 	/* Popping Function */
-	stack_t *temp, *head = NULL, *top = NULL;
+	stack_t *temp;
 
 	if (head == NULL || top == NULL)
 		printf("Empty Stack\n");
@@ -88,7 +86,7 @@ void pop(stack_t **stack, unsigned int line_number)
 */
 void pall(stack_t **stack, unsigned int line_number)
 {
-	stack_t *temp, *head = NULL, *top = NULL;
+	stack_t *temp;
 
 	temp = head;
 	if (head == NULL)

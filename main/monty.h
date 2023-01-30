@@ -17,6 +17,8 @@ typedef struct stack_s
 		struct stack_s *next;
 } stack_t;
 
+extern stack_t **stack, *head, *top;
+
 /**
  * struct instruction_s - opcode and its function
  * @opcode: the opcode
@@ -31,6 +33,8 @@ typedef struct instruction_s
 		void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
+extern instruction_t instructions[];
+
 /* ==== FUNCTIONS =====*/
 
 void *createNode(int x);
@@ -41,6 +45,5 @@ void errorCheck(int line_number, char *instruction);
 void pushCall(int line_number);
 void popCall(int line_number);
 void pallCall(int line_number);
-
 
 #endif /* MONTY_H */
