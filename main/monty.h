@@ -38,7 +38,7 @@ extern stack_t **stack, *head, *top;
 
 /* ==== FUNCTIONS =====*/
 
-void interpreter(stack **stack, char *filename);
+void interpreter(stack_t **stack, char *filename);
 void *createNode(int x);
 void push(stack_t **stack, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number);
