@@ -9,7 +9,6 @@
 #include <string.h>
 
 const char *VALID_INSTRUCTIONS[] = {"push", "pall", "pop"};
-stack_t **stack, *head = NULL, *top = NULL;
 
 /**
  * createNode - Funcition to Create  a New Node
@@ -40,12 +39,13 @@ void *createNode(int x)
 
 void push(stack_t **stack, unsigned int line_number)
 {
+	stack_t *top = *stack;
 	char *rcvd_value = strtok(NULL, " ");
 	int converted_value = strtol(rcvd_value, NULL, 10);
-	stack_t *newNode = (stack_t *)createNode(converted_value);
+	*stack = (stack_t *)createNode(converted_value);
 
-	if (head == NULL)
-		head = top = newNode;
+	if (*stack == NULL)
+		*stack = top = newNode;
 	else
 	{
 		newNode->prev = top;
@@ -63,9 +63,9 @@ void push(stack_t **stack, unsigned int line_number)
 void pop(stack_t **stack, unsigned int line_number)
 {
 	/* Popping Function */
-	stack_t *temp;
+	stack_t *temp, *top = *stack;
 
-	if (head == NULL || top == NULL)
+	if (*stack == NULL || top == NULL)
 		printf("Empty Stack\n");
 	else
 	{
@@ -86,10 +86,10 @@ void pop(stack_t **stack, unsigned int line_number)
 */
 void pall(stack_t **stack, unsigned int line_number)
 {
-	stack_t *temp;
+	stack_t *temp, *top = *stack;
 
-	temp = head;
-	if (head == NULL)
+	temp = *stack;
+	if (*stack == NULL)
 		printf("Empty Stack. Nothing to display\n");
 	while (temp != NULL)
 	{
