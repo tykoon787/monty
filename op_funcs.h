@@ -44,7 +44,7 @@ void push(stack_t **stack, unsigned int line_number __attribute__((unused)))
 	int converted_value = strtol(rcvd_value, NULL, 10);
 
 	newNode = (stack_t *)createNode(converted_value);
-	if (*stack == NULL)
+	if (*stack == NULL) // if (head == NULL)
 		*stack = top = newNode;
 	else
 	{
@@ -94,10 +94,16 @@ void pall(stack_t **stack, unsigned int line_number __attribute__((unused)))
 	if (*stack == NULL)
 		printf("Empty Stack. Nothing to display\n");
 
-	while (temp != NULL)
+	else
 	{
-		printf("Value: %d \n", temp->n);
-		temp = temp->next;
+		temp = *stack;
+		while (temp && temp->next)
+			temp = temp->next;
+		while (temp)
+		 {
+			printf("Value: %d \n", temp->n);
+			temp = temp->prev;
+		 }
 	}
 	free(temp);
 }
