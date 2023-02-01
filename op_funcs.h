@@ -46,7 +46,6 @@ void push(stack_t **stack, unsigned int line_number __attribute__((unused)))
 
 	if (converted_value == 0)
 		exit(EXIT_FAILURE);
-	printf("Value received in push %d\n", converted_value);
 
 	newNode = (stack_t *)createNode(converted_value);
 	if (*stack == NULL)
