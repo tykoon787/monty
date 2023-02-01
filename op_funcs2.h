@@ -1,3 +1,6 @@
+#ifndef OP_FUNCS2_H
+#define OP_FUNCS2_H
+
 #include "op_funcs.h"
 #include <errno.h>
 
@@ -11,6 +14,7 @@ int pushError(char *rcvd_value, int line_number)
 {
 	int converted_value;
 	char *endptr;
+
 	errno = 0;
 	converted_value = strtol(rcvd_value, &endptr, 10);
 	if (errno == ERANGE || *endptr != '\0')
@@ -20,3 +24,4 @@ int pushError(char *rcvd_value, int line_number)
 	}
 	return (converted_value);
 }
+#endif /* OP_FUNCS2_H */
