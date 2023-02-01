@@ -16,6 +16,11 @@ int pushError(char *rcvd_value, int line_number)
 	char *endptr;
 
 	errno = 0;
+	if (rcvd_value == NULL)
+	{
+		fprintf(stderr, "L%d: Usage: push integer\n", line_number);
+		exit(EXIT_FAILURE);
+	}
 	converted_value = strtol(rcvd_value, &endptr, 10);
 	if (errno == ERANGE || *endptr != '\0')
 	{
