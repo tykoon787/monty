@@ -47,6 +47,6 @@ void errorCheck(int line_number, char *instruction);
 void pushCall(stack_t **stack, int line_number);
 void popCall(stack_t **stack_t, int line_number);
 void pallCall(stack_t **stack, int line_number);
-void getFunction(const char *opcode);
+void getFunction(char *opcode);
 
 #endif /* MONTY_H */

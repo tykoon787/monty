@@ -57,7 +57,7 @@ void pallCall(stack_t **stack, int line_number)
  * @opcode: opcode received
  * Return: Nothing
 */
-void *getFunction(const char *opcode)
+void *getFunction(char *opcode)
 {
 	if (strcmp(opcode, "push") == 0)
 		return (&push);
