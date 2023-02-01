@@ -4,10 +4,9 @@
 #include "monty.h"
 #include "monty_interpreter.h"
 #include "callFuncs.h"
-#include "op_funcs.h2"
+#include "op_funcs2.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include <errno.h>
 #include <string.h>
 
 const char *VALID_INSTRUCTIONS[] = {"push", "pint", "pop"};

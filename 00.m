@@ -1,13 +1,13 @@
 push 10
 push 20
 push 30
-pall
 push 40
+push w0
 push 50
 push 60
-pall
+pint
 pop
 pop
-pall
+pint
 push 100
-pall
+pint

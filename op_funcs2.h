@@ -1,4 +1,5 @@
 #include "op_funcs.h"
+#include <errno.h>
 
 /**
  * pushError - Checks for a push error
