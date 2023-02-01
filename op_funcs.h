@@ -130,7 +130,7 @@ void errorCheck(int line_number, char *instruction)
 	}
 	if (!is_valid)
 	{
-		fprintf(stderr, "L%d: Usage: Push Interger\n", line_number);
+		fprintf(stderr, "L%d: Usage: Push Interger", line_number);
 		exit(EXIT_FAILURE);
 	}
 }
