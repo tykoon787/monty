@@ -5,6 +5,7 @@
 #include "monty_interpreter.h"
 #include "monty.h"
 #include <stdio.h>
+#include <string.h>
 
 /**
  * pushCall - Function that calls the push Function
@@ -48,7 +49,7 @@ void pallCall(stack_t **stack, int line_number)
 
 	func = getFunction("pall");
 	if (func)
-		func(stac, line_number);
+		func(stack, line_number);
 }
 
 /**
