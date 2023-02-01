@@ -9,7 +9,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-const char *VALID_INSTRUCTIONS[] = {"push", "pint", "pop"};
+const char *VALID_INSTRUCTIONS[] = {"push", "pint", "pop", "pall"};
 
 /**
  * createNode - Funcition to Create  a New Node
@@ -118,7 +118,7 @@ void pint(stack_t **stack, unsigned int line_number __attribute__((unused)))
 */
 void errorCheck(int line_number, char *instruction)
 {
-	int i, is_valid = 0, INSTRUCTION_COUNT = 3;
+	int i, is_valid = 0, INSTRUCTION_COUNT = 4;
 
 	for (i = 0; i < INSTRUCTION_COUNT; i++)
 	{
