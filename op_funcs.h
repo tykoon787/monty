@@ -40,9 +40,10 @@ void *createNode(int x)
 
 void push(stack_t **stack, unsigned int line_number __attribute__((unused)))
 {
-	stack_t *top, *newNode;
+	stack_t *top = NULL, *newNode;
 	char *rcvd_value = strtok(NULL, " ");
-	int converted_value = pushError(rcvd_value, line_number);	
+	int converted_value = pushError(rcvd_value, line_number);
+
 	if (converted_value == 0)
 		exit(EXIT_FAILURE);
 	printf("Value received in push %d\n", converted_value);
