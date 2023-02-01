@@ -32,14 +32,14 @@ void popCall(stack_t **stack, int line_number)
 }
 
 /**
- * pallCall - Function that calls the pall()
+ * pintCall - Function that calls the pint()
  * @stack: Stack to be manipulated
  * @line_number: Line Number
  * Return: Nothing
 */
-void pallCall(stack_t **stack, int line_number)
+void pintCall(stack_t **stack, int line_number)
 {
-	instruction_t popInstruction = {"pop", &pall};
+	instruction_t popInstruction = {"pop", &pint};
 	(*popInstruction.f)(stack, line_number);
 }
 

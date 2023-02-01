@@ -8,7 +8,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-const char *VALID_INSTRUCTIONS[] = {"push", "pall", "pop"};
+const char *VALID_INSTRUCTIONS[] = {"push", "pint", "pop"};
 
 /**
  * createNode - Funcition to Create  a New Node
@@ -83,11 +83,11 @@ void pop(stack_t **stack, unsigned int line_number __attribute__((unused)))
 }
 
 /**
- * pall - Function to print the values
+ * pint - Function to print the values
  * @stack: A pointer to a Pointer of a stack
  * @line_number: Line number
 */
-void pall(stack_t **stack, unsigned int line_number __attribute__((unused)))
+void pint(stack_t **stack, unsigned int line_number __attribute__((unused)))
 {
 	stack_t *temp = *stack;
 

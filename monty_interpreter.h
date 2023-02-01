@@ -55,8 +55,8 @@ void interpreter(stack_t **stack, char *filename)
 						pushCall(stack, line_number);
 					else if (strcmp(opcode, "pop") == 0)
 						popCall(stack, line_number);
-					else if (strcmp(opcode, "pall") == 0)
-						pallCall(stack, line_number);
+					else if (strcmp(opcode, "pint") == 0)
+						pintCall(stack, line_number);
 					errorCheck(line_number, opcode);
 					line_number++;
 				}
