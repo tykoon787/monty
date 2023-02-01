@@ -47,5 +47,6 @@ void errorCheck(int line_number, char *instruction);
 void pushCall(stack_t **stack, int line_number);
 void popCall(stack_t **stack_t, int line_number);
 void pintCall(stack_t **stack, int line_number);
+int pushError(char *rcvd_value, int line_number);
 
 #endif /* MONTY_H */

@@ -6,6 +6,7 @@
 #include "callFuncs.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <errno.h>
 #include <string.h>
 
 const char *VALID_INSTRUCTIONS[] = {"push", "pint", "pop"};
@@ -41,7 +42,10 @@ void push(stack_t **stack, unsigned int line_number __attribute__((unused)))
 {
 	stack_t *top, *newNode;
 	char *rcvd_value = strtok(NULL, " ");
-	int converted_value = strtol(rcvd_value, NULL, 10);
+	int converted_value = pushError(rcvd_value, line_number);	
+	if (converted_value == 0)
+		exit(EXIT_FAILURE);
+	printf("Value received in push %d\n", converted_value);
 
 	newNode = (stack_t *)createNode(converted_value);
 	if (*stack == NULL)
@@ -129,6 +133,26 @@ void errorCheck(int line_number, char *instruction)
 		fprintf(stderr, "L%d: Usage: push integer\n", line_number);
 		exit(EXIT_FAILURE);
 	}
+}
+
+/**
+ * pushError - Checks for a push error
+ * @rcvd_value: Value will be checked if its an int
+ * @line_number: Line number where error occurs
+ * Return: (converted value) on Success or (0) on error
+*/
+int pushError(char *rcvd_value, int line_number)
+{
+	int converted_value;
+	char *endptr;
+	errno = 0;
+	converted_value = strtol(rcvd_value, &endptr, 10);
+	if (errno == ERANGE || *endptr != '\0')
+	{
+		fprintf(stderr, "L%d: Usage: push integer\n", line_number);
+		return (0);
+	}
+	return (converted_value);
 }
 
 #endif /* OP_FUNCS */
