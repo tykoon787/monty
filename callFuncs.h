@@ -39,7 +39,7 @@ void popCall(stack_t **stack, int line_number)
 */
 void pallCall(stack_t **stack, int line_number)
 {
-	instruction_t popInstruction = {"pop", &pop};
+	instruction_t popInstruction = {"pop", &pall};
 	(*popInstruction.f)(stack, line_number);
 }
 
