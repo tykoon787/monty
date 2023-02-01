@@ -126,7 +126,7 @@ void errorCheck(int line_number, char *instruction)
 	}
 	if (!is_valid)
 	{
-		fprintf(stderr, "L%d:Usage:push integer\n", line_number);
+		fprintf(stderr, "L%d: Usage: push integer\n", line_number);
 		exit(EXIT_FAILURE);
 	}
 }
