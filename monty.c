@@ -16,13 +16,13 @@ int main(int argc, char *argv[])
 	stack = (stack_t **)malloc(sizeof(stack_t));
 	if (!stack)
 	{
-		perror("Malloc Failed\n");
+		fprintf("Malloc Failed\n");
 		exit(EXIT_FAILURE);
 	}
 
 	if (argc < 2)
 	{
-		printf("USAGE: monty file\n");
+		fprintf("USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
 	else

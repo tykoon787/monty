@@ -36,7 +36,7 @@ void interpreter(stack_t **stack, char *filename)
 	fp = fopen(filename, "r");
 
 	if (fp == NULL)
-		printf("error opeining file");
+		fprintf("Error: Can't open file %s", filename);
 	else
 	{
 		while ((bytes_read = getline(&line_buffer, &len, fp)) > 0)
