@@ -20,7 +20,7 @@ int pushError(char *rcvd_value, int line_number)
 	if (errno == ERANGE || *endptr != '\0')
 	{
 		fprintf(stderr, "L%d: Usage: push integer\n", line_number);
-		return (0);
+		exit(EXIT_FAILURE);	
 	}
 	return (converted_value);
 }
