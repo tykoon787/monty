@@ -124,9 +124,14 @@ void errorCheck(int line_number, char *instruction)
 			break;
 		}
 	}
-	if (!is_valid)
+	else if (!is_valid && (strcmp(instruction, "push") == 0))
 	{
-		printf("L%d: Unknown Instruction '%s'\n", line_number, instruction);
+		perror("L%d:usage:push integer\n");
+		exit(EXIT_FAILURE);
+	}
+	else (!isvalid)
+	{
+		perror("L%d: Unknown Instruction\n");
 		exit(EXIT_FAILURE);
 	}
 }
