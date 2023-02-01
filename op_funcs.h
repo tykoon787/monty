@@ -104,7 +104,7 @@ void pint(stack_t **stack, unsigned int line_number __attribute__((unused)))
 			temp = temp->next;
 		while (temp)
 		{
-			printf("Value: %d \n", temp->n);
+			printf("%d \n", temp->n);
 			temp = temp->prev;
 		}
 	}
