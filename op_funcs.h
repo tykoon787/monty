@@ -44,7 +44,7 @@ void push(stack_t **stack, unsigned int line_number __attribute__((unused)))
 	int converted_value = strtol(rcvd_value, NULL, 10);
 
 	newNode = (stack_t *)createNode(converted_value);
-	if (*stack == NULL) // if (head == NULL)
+	if (*stack == NULL)
 		*stack = top = newNode;
 	else
 	{
