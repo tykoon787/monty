@@ -96,7 +96,7 @@ void pint(stack_t **stack, unsigned int line_number __attribute__((unused)))
 	stack_t *temp = *stack;
 
 	if (*stack == NULL)
-		printf("");
+		printf(" ");
 	else
 	{
 		while (temp && temp->next)
