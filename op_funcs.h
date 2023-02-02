@@ -23,7 +23,7 @@ void *createNode(int x)
 	newNode = (stack_t *)malloc(sizeof(stack_t));
 	if (newNode == NULL)
 	{
-		printf("Error: malloc failed\n");
+		fprintf(stderr, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
 	newNode->prev = NULL;
@@ -73,7 +73,7 @@ void pop(stack_t **stack, unsigned int line_number __attribute__((unused)))
 	stack_t *temp, *top;
 
 	if (*stack == NULL)
-		printf("Empty Stack\n");
+		printf("");
 	else
 	{
 		top = *stack;
@@ -96,8 +96,7 @@ void pint(stack_t **stack, unsigned int line_number __attribute__((unused)))
 	stack_t *temp = *stack;
 
 	if (*stack == NULL)
-		printf("Empty Stack. Nothing to display\n");
-
+		printf("");
 	else
 	{
 		while (temp && temp->next)
@@ -130,7 +129,7 @@ void errorCheck(int line_number, char *instruction)
 	}
 	if (!is_valid)
 	{
-		fprintf(stderr, "L%d: Usage: Push Interger", line_number);
+		fprintf(stderr, "L%d: Uknown Instruction %s", line_number, instruction);
 		exit(EXIT_FAILURE);
 	}
 }
