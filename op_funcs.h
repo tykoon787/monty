@@ -73,7 +73,7 @@ void pop(stack_t **stack, unsigned int line_number __attribute__((unused)))
 	stack_t *temp, *top;
 
 	if (*stack == NULL)
-		printf("");
+		printf(" ");
 	else
 	{
 		top = *stack;
